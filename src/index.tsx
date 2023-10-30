@@ -5,13 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import Register from './views/Register';
 import Login from './views/Login';
 import Menu from './views/components/Menu';
+import MenuAlternative from './views/components/menuAlternative';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Menu/>
+    <MenuAlternative/>
   </React.StrictMode>
 );
 
