@@ -1,7 +1,7 @@
 import Logo from '../logo.svg';
 import '../../style/menu.css';
 
-export default function() {
+export default function () {
   return <>
     <nav className='menu'>
       <div className="ellipse" id="ellipse-1"></div>
