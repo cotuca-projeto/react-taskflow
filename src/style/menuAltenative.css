@@ -76,10 +76,9 @@ nav.menu>.buttons-menu>ul>li {
 nav.menu>.buttons-menu>ul>li:last-child {
   display: flex;
   width: 9rem;
-  padding: 0rem 0.375rem;
   justify-content: center;
   align-items: center;
-  gap: 0.6rem;
+  flex: 1;
   border-radius: 0.5rem;
   background: #050A24;  
 }
