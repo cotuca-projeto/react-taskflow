@@ -13,6 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    {/* <Menu></Menu> */}
+    {/* <MenuAlternative></MenuAlternative> */}
+    {/* <Login></Login> */}
+    {/* <Register></Register> */}
+    {/* <Footer></Footer> */}
   </React.StrictMode>
 );
 
