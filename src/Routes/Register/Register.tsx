@@ -28,6 +28,7 @@ export default function() {
                   <label htmlFor="first-name" id="first-name-label">Nome</label>
                 </div>
                 <input
+
                   type="text"
                   name="first-name"
                   id="first-name-field"
