@@ -94,7 +94,7 @@ main {
   background: #2d55fb;
   filter: blur(275px);
 
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #ellipse-1 {
@@ -108,14 +108,13 @@ main {
   display: flex;
   width: 20rem;
   height: auto;
-  transform: scale(0.9);
+  /* transform: scale(0.9); */
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 0.625rem;
-/* 
   padding: 30px;
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.307); */
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.307);
 }
 
 .login>.title {
@@ -178,7 +177,7 @@ main {
   align-self: stretch;
 }
 
-form>*>label {
+.submit>*>label {
   flex: 1 0 0;
   color: var(--text-secondary, #5a5a5d);
 
@@ -212,7 +211,7 @@ form>*>label {
   padding: 0px 5px 0px 0px;
 }
 
-input {
+.input {
   display: flex;
   padding: 0.75rem 1rem;
   /* width: 100%; */
@@ -226,14 +225,14 @@ input {
   transition: 0.5s;
 }
 
-input:hover,
-input:focus,
-input:active {
+.input:hover,
+.input:focus,
+.input:active {
   border-radius: 0.5rem;
   border: 3px solid var(--primary-weak, #e0effe);
 }
 
-input::placeholder {
+.input::placeholder {
   flex: 1 0 0;
   color: var(--text-tertiary, #bebebf);
 
@@ -290,7 +289,7 @@ input::placeholder {
   background: var(--primary, #007dfa);
 }
 
-#continue-google {
+#continuegoogle {
   display: flex;
   height: 3rem;
   padding: 1rem;
@@ -313,7 +312,7 @@ input::placeholder {
   /* 1rem */
 }
 
-#have-account {
+#haveaccount {
   color: var(--text-tertiary, #bebebf);
 
   /* body/large/regular */
@@ -325,7 +324,7 @@ input::placeholder {
   text-transform: capitalize;
 }
 
-#have-account>a {
+#haveaccount>a {
   color: var(--primary, #007dfa);
 
   /* body/large/regular */

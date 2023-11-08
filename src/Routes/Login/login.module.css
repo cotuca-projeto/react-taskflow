@@ -2,6 +2,7 @@
 
 body {
   box-sizing: border-box;
+
   margin: 0px;
   padding: 0px;
 
@@ -9,10 +10,11 @@ body {
   background: #050a24;
 }
 
-main {
+.main {
   display: flex;
   justify-content: center;
   z-index: 1;
+  background-color: #050a24;
 }
 
 .logo {
@@ -47,17 +49,17 @@ main {
 
   border-radius: 23.6875rem;
   background: #2d55fb;
-  filter: blur(275px);
+  filter: blur(500px);
 
   overflow: hidden;
 }
 
-#ellipse-1 {
+#ellipse1 {
   position: fixed;
   top: 30rem;
 }
 
-#ellipse-2 {
+#ellipse2 {
   position: fixed;
 
   left: 65rem;
@@ -69,6 +71,7 @@ main {
   display: flex;
   padding: 2rem 3rem;
   border-radius: 0.5rem;
+  width: 20rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -217,7 +220,7 @@ input::placeholder {
   background: var(--primary, #007dfa);
 }
 
-#continue-google {
+#continuegoogle {
   display: flex;
   height: 3rem;
   padding: 1rem;
@@ -240,7 +243,7 @@ input::placeholder {
   /* 1rem */
 }
 
-#have-account {
+#haveaccount {
   color: var(--text-tertiary, #bebebf);
 
   /* body/large/regular */
@@ -252,7 +255,7 @@ input::placeholder {
   text-transform: capitalize;
 }
 
-#have-account > a {
+#haveaccount > a {
   color: var(--primary, #007dfa);
 
   /* body/large/regular */
@@ -281,7 +284,7 @@ input::placeholder {
     padding: 0 15px;
   }
 
-  main {
+  .main {
     padding: 0;
   }
 }
@@ -303,7 +306,7 @@ input::placeholder {
     width: 100%;
   }
 
-  main {
+  .main {
     padding: 0;
   }
 }
@@ -325,7 +328,7 @@ input::placeholder {
     width: 100%;
   }
 
-  main {
+  .main {
     padding: 0;
   }
 }
