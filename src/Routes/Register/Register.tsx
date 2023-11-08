@@ -1,34 +1,34 @@
-import '../style/register.css';
-import Logo from '../views/images/logo.svg';
-import Google from '../views/images/google.svg';
+import styles from './register.module.css'; 
+import Logo from '../../svg/logo.svg';
+import Google from '../../svg/google.svg';
 
 export default function() {
   return (
-      <main>
-        <div className="bg">
-          <div className="logo">
+      <main className={styles.main}>
+        <div className={styles.bg}>
+          <div className={styles.logo}>
             <p>TaskFlow</p>
             <img src={Logo} alt="Logo-TaskFlow" />
           </div>
-          <div className="title">
+          <div className={styles.title}>
             <h3>
               Bem-vindo.<br />Comece sua jornada agora com nosso sistema de
               tarefas
             </h3>
           </div>
-          <div className="ellipse" id="ellipse-1"></div>
         </div>
-        <div className="login">
-          <div className="title">
+        <div className={styles.login}>
+          <div className={styles.title}>
             <h3>Crie a sua conta aqui</h3>
           </div>
           <form action="" method="post" className="submit">
-            <div className="name">
-              <div className="first-name">
+            <div className={styles.name}>
+              <div className={styles.first}>
                 <div className="row">
                   <label htmlFor="first-name" id="first-name-label">Nome</label>
                 </div>
                 <input
+
                   type="text"
                   name="first-name"
                   id="first-name-field"
