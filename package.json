@@ -1,7 +1,10 @@
 {
   "name": "react-taskflow",
   "version": "0.1.0",
-  "author": {"name": "Gabriel Oliveira, Rafael Moreira","url": "https://github.com/cotuca-projeto"},
+  "author": {
+    "name": "Gabriel Oliveira, Rafael Moreira",
+    "url": "https://github.com/cotuca-projeto"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -13,6 +16,7 @@
     "@types/react-dom": "^18.2.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"

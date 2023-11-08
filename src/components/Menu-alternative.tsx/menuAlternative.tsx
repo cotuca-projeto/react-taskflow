@@ -1,5 +1,5 @@
-import Logo from '../logo_black.svg';
-import '../../style/menuAltenative.css';
+import Logo from '../../svg/logo_black.svg';
+import './menuAltenative.css';
 
 export default function () {
   return <>

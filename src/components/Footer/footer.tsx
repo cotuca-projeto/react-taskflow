@@ -1,7 +1,7 @@
-import Logo from '../logo_alternative.svg'
-import Unicamp from '../unicamp.svg'
-import Cotuca from '../cotuca.svg'
-import '../../style/footer.css'
+import Logo from '../../svg/logo_alternative.svg'
+import Unicamp from '../../svg/unicamp.svg'
+import Cotuca from '../../svg/cotuca.svg'
+import './footer.css'
 
 export default function () {
   const colorFill = "#263238"

@@ -92,7 +92,7 @@ nav.menu>.buttons-menu>ul>li:last-child>a {
   z-index: 0;
 
   border-radius: var(--scale-ellipse);
-  background: #2d55fb;
+  /* background: #2d55fb; */
   filter: blur(calc(var(--scale-ellipse) - 25px * 2));
 
   overflow: hidden;
