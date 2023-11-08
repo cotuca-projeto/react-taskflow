@@ -1,4 +1,4 @@
-import Logo from '../logo.svg';
+import Logo from '../views/images/logo.svg';
 import '../../style/menu.css';
 
 export default function () {

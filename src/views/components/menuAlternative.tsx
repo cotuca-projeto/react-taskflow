@@ -1,4 +1,4 @@
-import Logo from '../logo_black.svg';
+import Logo from '../views/images/logo_black.svg';
 import '../../style/menuAltenative.css';
 
 export default function () {

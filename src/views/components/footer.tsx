@@ -1,5 +1,5 @@
-import Logo from '../logo_alternative.svg'
-import Unicamp from '../unicamp.svg'
+import Logo from '../views/images/logo_alternative.svg'
+import Unicamp from '../views/images/unicamp.svg'
 import '../../style/footer.css'
 
 export default function () {

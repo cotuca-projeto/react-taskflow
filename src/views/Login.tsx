@@ -1,5 +1,5 @@
-import Logo from "./logo.svg"
-import Google from "./google.svg"
+import Logo from "../views/images/logo.svg"
+import Google from "../views/images/google.svg"
 import '../style/login.css'
 
 export default function () {
