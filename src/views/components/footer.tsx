@@ -25,7 +25,7 @@ export default function () {
         <p>Projeto feito pelos alunos do Colégio Técnico da Unicamp</p>
         <div className='infoLogo'>
           <img src={Unicamp} alt="Logo Unicamp" />
-          <img src={Cotuca} alt="Logo Cotuca" />
+          {/* <img src={Cotuca} alt="Logo Cotuca" /> */}
         </div>
         
       </div>
