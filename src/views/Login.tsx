@@ -13,7 +13,7 @@ export default function () {
             <div className="login">
                 <div className="title">
                     {/* <!-- <p>Welcome Back</p> --> */}
-                    <h3>Entre em sua conta aqui</h3>
+                    <h3>Entre em sua conta</h3>
                 </div>
                 <form action="" method="post" className="submit">
                     <div className="email">
@@ -36,7 +36,7 @@ export default function () {
                             Entrar
                         </button>
                     </div>
-                    <p id="have-account">Não tem uma conta? <a href="/register">Register</a></p>
+                    <p id="have-account">Não tem uma conta? <a href="/register">Registre-se</a></p>
                 </form>
                 <button id="continue-google">
                     <img src={Google} />Continue com o Google
