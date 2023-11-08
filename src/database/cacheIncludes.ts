@@ -1,5 +1,5 @@
 import fs from "fs";
-import { general } from "../config";
+import { general } from "../database/config";
 
 export function cacheIncludes(userID: string): boolean {
   let cache: string[] = [];
