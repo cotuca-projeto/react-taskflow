@@ -1,8 +1,52 @@
 import Logo from "../../svg/logo.svg";
 import Google from "../../svg/google.svg";
 import styles from "./login.module.css";
+import React, { MouseEventHandler, useState } from "react";
+import { validEmail, validPassword } from "../../utils/Validators";
+import UserServices from "../../services/userServices";
+import { NavLink, useNavigate } from "react-router-dom";
+
+const userService = new UserServices();
 
 export default function () {
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+
+  const handleChangeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    setForm({ ...form, [name]: value });
+    console.log(form);
+  };
+
+  const HandleSubmitLogin = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
+    try {
+      setLoading(true);
+      const response = await userService.login({
+        email: form.email,
+        password: form.password,
+      });
+      console.log(response);
+      if (response) {
+        alert("Usuário logado com sucesso");
+        navigate("/home");
+      }
+      return setLoading(false);
+    } catch (error) {
+      console.log(error);
+      alert("Erro ao fazer login");
+      return setLoading(false);
+    }
+  };
+
+  const validInput = (): boolean => {
+    return validEmail(form.email) && validPassword(form.password);
+  };
+
   return (
     <div className={styles.master}>
       <div className={styles.logo}>
@@ -27,6 +71,7 @@ export default function () {
                 type="email"
                 name="email"
                 id="email-field"
+                onChange={handleChangeForm}
                 placeholder="taskflow@gmail.com"
                 required
                 autoComplete="email"
@@ -35,26 +80,34 @@ export default function () {
             <div className={styles.password}>
               <div className={styles.row}>
                 <label htmlFor="password">Senha</label>
-                <a href="#" id={styles.forget}>
+                <NavLink to={"/forget"} id={styles.forget}>
                   Esqueceu sua senha?
-                </a>
+                </NavLink>
               </div>
               <input
-                type="text"
+                type="password"
                 name="password"
                 id="password-field"
+                onChange={handleChangeForm}
                 placeholder="Digite sua senha"
                 required
                 autoComplete="new-password"
               />
             </div>
             <div className={styles.buttons}>
-              <button id={styles.create} type="submit">
+              <button
+                id={styles.create}
+                type="submit"
+                onClick={
+                  HandleSubmitLogin as unknown as MouseEventHandler<HTMLButtonElement>
+                }
+                disabled={loading || !validInput()}
+              >
                 Entrar
               </button>
             </div>
             <p id={styles.haveaccount}>
-              Não tem uma conta? <a href="/register">Registre-se</a>
+              Não tem uma conta? <NavLink to={"/register"}>Registre-se</NavLink>
             </p>
           </form>
           <button id={styles.continuegoogle}>

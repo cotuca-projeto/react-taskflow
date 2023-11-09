@@ -17,6 +17,7 @@ export default function () {
             Comece sua jornada agora com nosso sistema de tarefas
           </h3>
         </div>
+        <div className={styles.ellipse} id={styles.ellipse1}></div>
       </div>
       <div className={styles.login}>
         <div className={styles.title}>

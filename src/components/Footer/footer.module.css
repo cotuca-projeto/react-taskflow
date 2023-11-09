@@ -1,6 +1,7 @@
-footer {
+.footer {
   display: flex;
   width: 100vw;
+  height: min-content;
   padding: 0.625rem;
   justify-content: space-between;
   align-items: center;
@@ -8,15 +9,15 @@ footer {
   row-gap: 0.625rem;
   flex-shrink: 0;
   flex-wrap: wrap;
+  background-color: white;
 
   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
   bottom: 0;
   left: 0;
   position: fixed;
-  
 }
 
-footer>.social {
+.footer>.social {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,14 +25,14 @@ footer>.social {
   width: 15rem;
 }
 
-footer>.social>.logo {
+.footer>.social>.logo {
   max-height: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-footer>.social>.logo>p {
+.footer>.social>.logo>p {
   color: #263238;
   font-size: 2rem;
   font-style: italic;
@@ -39,14 +40,14 @@ footer>.social>.logo>p {
   line-height: normal;
 }
 
-footer>.social>.logo>img {
+.footer>.social>.logo>img {
   width: 3.0625rem;
   height: 4.0625rem;
   flex-shrink: 0;
   fill: rgba(0, 0, 0, 0.00);
 }
 
-footer>.social>.icons {
+.footer>.social>.icons {
   margin: 0;
   margin-top: 15px;
   list-style: none;
@@ -72,7 +73,7 @@ p#copyright {
   margin-bottom: 0px;
 }
 
-footer>.info {
+.footer>.info {
   display: flex;
   width: 24.66875rem;
   margin-right: 1rem;
@@ -81,7 +82,7 @@ footer>.info {
   flex-shrink: 0;
 }
 
-footer>.info>p {
+.footer>.info>p {
   color: #263238;
   font-size: 1.25rem;
   font-style: normal;
@@ -89,7 +90,7 @@ footer>.info>p {
   line-height: normal;
 }
 
-footer>.info>.infoLogo>img{
+.footer>.info>.infoLogo>a>img{
   width: 3rem;
   height: 4rem;
   flex-shrink: 0;
