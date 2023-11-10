@@ -56,7 +56,7 @@ export default function () {
               />
             </div>
           </div>
-          <div className="user">
+          <div className={styles.oncerow}>
             <div className={styles.row}>
               <label htmlFor="user" id={styles.userlabel}>
                 Nome de usuário
@@ -72,7 +72,7 @@ export default function () {
               autoComplete="username"
             />
           </div>
-          <div className="email">
+          <div className={styles.oncerow}>
             <div className={styles.row}>
               <label htmlFor="email" id="email-label">
                 Email
@@ -87,7 +87,7 @@ export default function () {
               autoComplete="email"
             />
           </div>
-          <div className="password">
+          <div className={styles.oncerow}>
             <div className={styles.row}>
               <label htmlFor="password">Senha</label>
             </div>

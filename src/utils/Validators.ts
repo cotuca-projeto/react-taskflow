@@ -5,7 +5,6 @@ export const validEmail = (email: string): boolean => {
 };
 
 export const validPassword = (password: string): boolean => {
-  // Mínimo de oito caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial
   const regex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   return password?.length >= 8 && regex.test(password) ? true : false;

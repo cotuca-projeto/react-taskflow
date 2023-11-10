@@ -29,21 +29,19 @@ export default class UserServices {
     last_name: string;
     username: string;
   }): Promise<boolean> {
-
     if (validEmail(dados.email)) {
       throw new Error("Email inválido");
     }
-    
 
-    const { status } = await this.axios.post("/register", dados);
-    if (status === 201) {
+    const { status, data } = await this.axios.post("/register", dados);
+    if (status === 201 || data !== null) {
       return true;
     }
     return false;
   }
 
   isAuthenticated() {
-    const token = localStorage.getItem("token");
+    const token: string = localStorage.getItem("token")!;
     return token ? true : false;
   }
 
