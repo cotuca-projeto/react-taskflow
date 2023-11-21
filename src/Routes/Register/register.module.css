@@ -35,7 +35,7 @@ main {
   align-items: center;
 
   padding: 25px 0px 0px 10px;
-   
+
 
 }
 
@@ -54,21 +54,18 @@ main {
 
 .bg>.title>h3 {
   /* deixa no final da div */
-  margin-top: 50%;
+  margin-top: 45%;
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
-
   position: absolute;
   padding: 0px 15px;
-
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-style: italic;
   font-weight: 300;
   line-height: 3.5rem;
   overflow-wrap: break-word;
   word-break: break-word;
-
   background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.44) 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -152,11 +149,11 @@ main {
   width: 100%;
 }
 
-.name > * {
+.name>* {
   flex: 1;
 }
 
-.name > * > input {
+.name>*>input {
   flex: 1;
   width: 65%;
 }
@@ -223,7 +220,7 @@ main {
   border: 3px solid var(--primary-weak, #e0effe);
 }
 
-.oncerow > input {
+.oncerow>input {
   width: 135%;
 }
 
