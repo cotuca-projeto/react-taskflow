@@ -4,20 +4,39 @@ export const validEmail = (email: string): boolean => {
     : false;
 };
 
-export const validPassword = (password: string): boolean => {
+export const validPassword = (password: string) => {
   const regex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  return password?.length >= 8 && regex.test(password) ? true : false;
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  return regex.test(password);
 };
-
 export const validUsername = (name: string): boolean => {
   return name?.length >= 3 ? true : false;
 };
 
-export const validName = (name: string): boolean => {
+export const validFirstName = (name: string): boolean => {
   return name?.length >= 3 ? true : false;
 };
 
 export const validLastName = (name: string): boolean => {
   return name?.length >= 3 ? true : false;
+};
+
+export const validComplet = (
+  first_name: string,
+  last_name: string,
+  username: string,
+  email: string,
+  password: string
+): boolean => {
+  return (
+    validFirstName(first_name) &&
+    validLastName(last_name) &&
+    validUsername(username) &&
+    validEmail(email) &&
+    validPassword(password)
+  );
+};
+
+export const validInput = (email: string, password: string): boolean => {
+  return validEmail(email) && validPassword(password);
 };

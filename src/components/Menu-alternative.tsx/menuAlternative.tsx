@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "../../svg/logo_black.svg";
 import styles from "./menuAltenative.module.css";
 
@@ -11,10 +12,13 @@ export default function () {
       <div className={styles["buttons-menu"]}>
         <ul>
           <li>
-            <a href="/login">Fazer Login</a>
+            <Link to={"/project"}>Tarefas</Link>
           </li>
           <li>
-            <a href="/register">Cadastre-se</a>
+            <Link to={"/login"}>Fazer Login</Link>
+          </li>
+          <li>
+            <Link to={"/register"}>Cadastre-se</Link>
           </li>
         </ul>
       </div>

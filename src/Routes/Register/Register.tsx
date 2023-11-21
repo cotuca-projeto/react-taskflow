@@ -1,8 +1,50 @@
 import styles from "./register.module.css";
 import Logo from "../../svg/logo.svg";
 import Google from "../../svg/google.svg";
+import { useState, useContext, useEffect } from "react";
+import { Authcontext } from "../../Contexts/Auth/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { validComplet } from "../../utils/Validators";
 
 export default function () {
+  const auth = useContext(Authcontext);
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [disabled, setDisabled] = useState(false);
+
+  const handleRegister = async () => {
+    if (firstName && lastName && userName && email && password) {
+      const isLogged = await auth
+        .register(userName, password, firstName, lastName, email)
+        .catch((err) => {
+          if (err.response.status === 401) {
+            return alert("Email ou nome de usuário já existente!");
+          } else if (err.response.status === 404) {
+            return alert("Não foi encontrado o usuario!");
+          }
+        });
+
+      if (isLogged) {
+        setDisabled(true);
+        navigate("/project");
+      } else {
+        return alert("Erro, tente novamente!");
+        setDisabled(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (auth.user) {
+      navigate("/project");
+    }
+  });
+
   return (
     <main className={styles.main}>
       <div className={styles.bg}>
@@ -23,7 +65,7 @@ export default function () {
         <div className={styles.title}>
           <h3>Crie a sua conta aqui</h3>
         </div>
-        <form action="" method="post" className={styles.submit}>
+        <div className={styles.submit}>
           <div className={styles.name}>
             <div className={styles.first}>
               <div className={styles.row}>
@@ -35,6 +77,8 @@ export default function () {
                 type="text"
                 name="first-name"
                 id="first-name-field"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 placeholder="Gabriel"
                 required
                 autoComplete="name"
@@ -50,6 +94,8 @@ export default function () {
                 type="text"
                 name="last-name"
                 id="last-name-field"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 placeholder="Moreira"
                 required
                 autoComplete="cc-name"
@@ -66,6 +112,8 @@ export default function () {
               type="text"
               name="user"
               className="input"
+              value={userName}
+              onChange={(e) => setUsername(e.target.value)}
               id="user-field"
               placeholder="Xaulin matador de porco"
               required
@@ -82,6 +130,8 @@ export default function () {
               type="email"
               name="email"
               id="email-field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="taskflow@gmail.com"
               required
               autoComplete="email"
@@ -92,8 +142,10 @@ export default function () {
               <label htmlFor="password">Senha</label>
             </div>
             <input
-              type="text"
+              type="password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               id="password-field"
               placeholder="Digite sua senha"
               required
@@ -101,14 +153,22 @@ export default function () {
             />
           </div>
           <div className={styles.buttons}>
-            <button id={styles.create} type="submit">
+            <button
+              id={styles.create}
+              type="submit"
+              onClick={handleRegister}
+              disabled={
+                disabled ||
+                !validComplet(firstName, lastName, userName, email, password)
+              }
+            >
               Crie sua conta
             </button>
           </div>
           <p id={styles.haveaccount}>
             Já tem uma conta? <a href="/login">Log in</a>
           </p>
-        </form>
+        </div>
         <button id={styles.continuegoogle}>
           <img src={Google} />
           Continue com o Google

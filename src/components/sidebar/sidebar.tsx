@@ -1,11 +1,10 @@
-import Folders from "../../components/Folders/Folders";
-import Options from "../../components/Options/Options";
-import Profile from "../../components/Profile/Profile";
+import Folders from "../Folders/Folders";
+import Options from "../Options/Options";
+import Profile from "../Profile/Profile";
 import styles from "./sidebar.module.css";
-import { InstanceDateProps } from "../../Routes/Container/Container";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function ({ imageUrl, userProfile }: InstanceDateProps) {
+export default function () {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -19,13 +18,7 @@ export default function ({ imageUrl, userProfile }: InstanceDateProps) {
           }
         ></i>
       </button>
-      <Profile
-        imageUrl={
-          "https://i.redd.it/vgjbv0xhcrr51.png"
-        }
-        userProfile={userProfile}
-        hide={sidebar}
-      />
+      <Profile hide={sidebar} />
       <Options hide={sidebar} />
       <Folders hide={sidebar} />
     </div>

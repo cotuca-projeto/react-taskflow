@@ -284,6 +284,11 @@ main {
   background: var(--primary, #007dfa);
 }
 
+#create:disabled {
+  background: var(--primary-weak, #e0effe);
+  opacity: 0.5;
+}
+
 #continuegoogle {
   display: flex;
   height: 3rem;

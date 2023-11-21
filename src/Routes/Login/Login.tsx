@@ -1,51 +1,43 @@
 import Logo from "../../svg/logo.svg";
 import Google from "../../svg/google.svg";
 import styles from "./login.module.css";
-import React, { MouseEventHandler, useState } from "react";
-import { validEmail, validPassword } from "../../utils/Validators";
-import UserServices from "../../services/userServices";
 import { NavLink, useNavigate } from "react-router-dom";
-
-const userService = new UserServices();
+import { useContext, useEffect, useState } from "react";
+import { Authcontext } from "../../Contexts/Auth/AuthContext";
+import { validInput } from "../../utils/Validators";
 
 export default function () {
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ email: "", password: "" });
+  const auth = useContext(Authcontext);
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleChangeForm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    console.log(name, value);
-    setForm({ ...form, [name]: value });
-    console.log(form);
-  };
+  const [disabled, setDisabled] = useState(false);
 
-  const HandleSubmitLogin = async (
-    event: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    event.preventDefault();
-    try {
-      setLoading(true);
-      const response = await userService.login({
-        email: form.email,
-        password: form.password,
+  const handleLogin = async () => {
+    if (email && password) {
+      const isLogged = await auth.login(email, password).catch((err) => {
+        if (err?.response?.status === 401) {
+          console.log(err.response);
+          return alert("Ocorreu um erro ao fazer login!");
+        }
       });
-      console.log(response);
-      if (response) {
-        alert("Usuário logado com sucesso");
-        navigate("/home");
+      if (isLogged) {
+        setDisabled(true);
+      } else {
+        setDisabled(false);
+        navigate("/project");
       }
-      return setLoading(false);
-    } catch (error) {
-      console.log(error);
-      alert("Erro ao fazer login");
-      return setLoading(false);
     }
   };
 
-  const validInput = (): boolean => {
-    return validEmail(form.email) && validPassword(form.password);
-  };
+  validInput(email, password);
+
+  useEffect(() => {
+    if (auth.user) {
+      navigate("/project");
+    }
+  });
 
   return (
     <div className={styles.master}>
@@ -60,7 +52,7 @@ export default function () {
             {/* <!-- <p>Welcome Back</p> --> */}
             <h3>Entre em sua conta</h3>
           </div>
-          <form action="" method="post" className={styles.submit}>
+          <div className={styles.submit}>
             <div className={styles.email}>
               <div className={styles.row}>
                 <label htmlFor="email" id="email-label">
@@ -70,8 +62,9 @@ export default function () {
               <input
                 type="email"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 id="email-field"
-                onChange={handleChangeForm}
                 placeholder="taskflow@gmail.com"
                 required
                 autoComplete="email"
@@ -87,8 +80,9 @@ export default function () {
               <input
                 type="password"
                 name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 id="password-field"
-                onChange={handleChangeForm}
                 placeholder="Digite sua senha"
                 required
                 autoComplete="new-password"
@@ -98,10 +92,8 @@ export default function () {
               <button
                 id={styles.create}
                 type="submit"
-                onClick={
-                  HandleSubmitLogin as unknown as MouseEventHandler<HTMLButtonElement>
-                }
-                disabled={loading || !validInput()}
+                onClick={handleLogin}
+                disabled={disabled || !validInput(email, password)}
               >
                 Entrar
               </button>
@@ -109,7 +101,7 @@ export default function () {
             <p id={styles.haveaccount}>
               Não tem uma conta? <NavLink to={"/register"}>Registre-se</NavLink>
             </p>
-          </form>
+          </div>
           <button id={styles.continuegoogle}>
             <img src={Google} />
             Continue com o Google
