@@ -13,6 +13,7 @@ export type AuthContextType = {
   login: (email: string, password: string) => Promise<boolean>;
   getTasks: () => Promise<any[]>;
   getImage: () => Promise<Buffer>;
+  updateImage: (image: File) => Promise<boolean>;
   logout: () => void;
 };
 

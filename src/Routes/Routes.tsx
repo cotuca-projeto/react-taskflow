@@ -20,15 +20,12 @@ export const Routering = createBrowserRouter([
         <Cointainer />
       </RequireAuth>
     ),
+    errorElement: <Error statuscode={503} title="Serviço indisponível" />,
   },
   {
     path: "/register",
     element: <Register />,
     errorElement: <Error statuscode={503} title="Serviço indisponível" />,
-  },
-  {
-    path: "/not-found",
-    element: <Error statuscode={404} title={"Página não encontrada!"} />,
   },
   {
     path: "login",

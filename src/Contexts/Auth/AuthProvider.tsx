@@ -124,9 +124,18 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return data;
   };
 
+  const updateImage = async (image: File) => {
+    const response = await api.updateImage(image);
+    const data = response.data;
+    if (data) {
+      localStorage.setItem("profile_image", data);
+    }
+    return data;
+  };
+
   return (
     <Authcontext.Provider
-      value={{ user, register, logout, login, getTasks, getImage }}
+      value={{ user, register, logout, login, getTasks, getImage, updateImage }}
     >
       {children}
     </Authcontext.Provider>

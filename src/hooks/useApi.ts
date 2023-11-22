@@ -98,6 +98,32 @@ export const useApi = () => ({
 
     return response;
   },
+
+  updateTask: async (
+    id: number,
+    title: string,
+    description: string,
+    token: string
+  ) => {
+    const response = await api.put("/api/tasks/updatetask", {
+      id,
+      title,
+      description,
+      token,
+    });
+    return response;
+  },
+
+  updateImage: async (image: File) => {
+    const response = await api.put(
+      "/api/users/updateimage",
+      { image },
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      }
+    );
+    return response;
+  },
 });
 
 export default useApi;
