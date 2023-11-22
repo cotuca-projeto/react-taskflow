@@ -1,5 +1,7 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import Config from "../Config/Config";
+import InputParameter from "../inputParameter/inputParameter";
 import OptionsParameter from "../optionsParameter/optionsParameter";
 import styles from "./options.module.css";
 import { useContext, useState } from "react";
@@ -19,7 +21,7 @@ export default function ({ hide }: optionsProps) {
 
   return (
     <div className={styles.options}>
-      <OptionsParameter
+      <InputParameter
         icon={"fa-solid fa-magnifying-glass"}
         text={"Pesquisa"}
         hide={hide}

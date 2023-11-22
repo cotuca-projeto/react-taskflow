@@ -1,0 +1,48 @@
+.optionsparameter {
+    display: flex;
+    padding: 0.3rem;
+    margin: 15px 0;
+    align-items: center;
+    gap: 1rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: transparent;
+    justify-content: center;
+
+    transition: 0.3s;
+}
+
+.optionsparameter > * {
+    transition: 0.3s;
+}
+
+.none {
+    display: none;
+}
+
+.optionsparameter:hover {
+    background-color: #F5F5F5;
+}
+
+.text {
+    flex: 1 0 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+
+    letter-spacing: 0.03375rem;
+}
+
+#icon {
+    display: flex;
+    transform: scale(1.5);
+    margin: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
