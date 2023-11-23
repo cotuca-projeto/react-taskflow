@@ -1,0 +1,8 @@
+.main {
+    display: flex;
+    gap: 1rem;
+}
+
+.outlet {
+    display: flex;
+}
