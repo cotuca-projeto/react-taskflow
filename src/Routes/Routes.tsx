@@ -20,6 +20,12 @@ export const Routering = createBrowserRouter([
         <Cointainer />
       </RequireAuth>
     ),
+    children: [
+      {
+        path: "newtask",
+        element: <h1>Poggers</h1>,
+      },
+    ],
     errorElement: <Error statuscode={503} title="Serviço indisponível" />,
   },
   {
