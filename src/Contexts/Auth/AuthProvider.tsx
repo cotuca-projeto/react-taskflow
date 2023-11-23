@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../types/User";
 import { Authcontext } from "./AuthContext";
 import useApi from "../../hooks/useApi";
@@ -54,7 +54,9 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     localStorage.setItem("username", user.username);
     localStorage.setItem("email", user.email);
     localStorage.setItem("id", user.id.toString());
-    localStorage.setItem("profile_image", user.profile_image as string);
+    if(user.profile_image) {
+      localStorage.setItem("profile_image", user.profile_image as unknown as string)
+    }
     localStorage.setItem("first_name", user.first_name as string);
     localStorage.setItem("last_name", user.last_name as string);
   };

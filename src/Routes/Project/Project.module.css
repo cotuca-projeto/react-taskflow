@@ -1,9 +1,8 @@
 .main {
-    display: flex
+    display: flex;
+    gap: 1rem;
 }
 
 .outlet {
-    position: absolute;
     display: flex;
-    left: 30%;
 }

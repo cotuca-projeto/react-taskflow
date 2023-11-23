@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../../components/navbar/navbar";
 import Sidebar from "../../components/sidebar/sidebar";
 import styles from "./Project.module.css";
-import sidebar from "../../components/sidebar/sidebar";
 
 export default function () {
 
@@ -12,7 +11,6 @@ export default function () {
       <div className={styles.main}>
         <Sidebar />
         <div className={styles.outlet}>
-          <h1>Olá</h1>
           <Outlet />
         </div>
         <Navbar />

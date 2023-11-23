@@ -25,6 +25,10 @@ export const Routering = createBrowserRouter([
         path: "newtask",
         element: <h1>Poggers</h1>,
       },
+      {
+        path: ":id",
+        element: <></>
+      }
     ],
     errorElement: <Error statuscode={503} title="Serviço indisponível" />,
   },
