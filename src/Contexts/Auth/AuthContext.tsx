@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import { User } from "../../types/User";
+import { Task, User } from "../../types/User";
+import { AxiosResponse } from "axios";
 
 export type AuthContextType = {
   user: User | null;
@@ -11,7 +12,9 @@ export type AuthContextType = {
     email: string
   ) => Promise<boolean>;
   login: (email: string, password: string) => Promise<boolean>;
-  getTasks: () => Promise<any[]>;
+  getTasks: () => Promise<
+    AxiosResponse<{ status: number; Message: string; tasks: Task[] | null}>
+  >;
   getImage: () => Promise<Buffer>;
   updateImage: (image: File) => Promise<boolean>;
   logout: () => void;

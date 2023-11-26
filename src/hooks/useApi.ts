@@ -22,6 +22,7 @@ export const useApi = () => ({
     }
   },
 
+  // Base das Tasks do Usuário
   createTask: async (
     title: string,
     description: string,
@@ -53,6 +54,22 @@ export const useApi = () => ({
     return response;
   },
 
+  updateTask: async (
+    id: number,
+    title: string,
+    description: string,
+    token: string
+  ) => {
+    const response = await api.put("/api/tasks/updatetask", {
+      id,
+      title,
+      description,
+      token,
+    });
+    return response;
+  },
+
+  // Base de Usuários
   register: async (
     username: string,
     password: string,
@@ -96,21 +113,6 @@ export const useApi = () => ({
     const response = await api.post("/api/users/login", params);
     console.log(response);
 
-    return response;
-  },
-
-  updateTask: async (
-    id: number,
-    title: string,
-    description: string,
-    token: string
-  ) => {
-    const response = await api.put("/api/tasks/updatetask", {
-      id,
-      title,
-      description,
-      token,
-    });
     return response;
   },
 

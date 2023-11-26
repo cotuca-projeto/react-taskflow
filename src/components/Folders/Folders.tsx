@@ -18,11 +18,20 @@ export default function ({ hide }: foldersProps) {
   }, []);
 
   const fetchData = async () => {
-    const data = await auth.getTasks().catch((err) => {
+    const response = await auth.getTasks().catch((err) => {
       console.error(err);
     });
 
-    if (data) setTasks(data);
+    console.log(response);
+
+    if (response) {
+      console.log(response?.data?.tasks);
+      if (response?.data?.tasks) {
+        setTasks(response?.data?.tasks);
+      } else {
+        setTasks([]);
+      }
+    }
   };
 
   const handleClick = () => {

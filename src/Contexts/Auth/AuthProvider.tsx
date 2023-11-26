@@ -54,8 +54,11 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     localStorage.setItem("username", user.username);
     localStorage.setItem("email", user.email);
     localStorage.setItem("id", user.id.toString());
-    if(user.profile_image) {
-      localStorage.setItem("profile_image", user.profile_image as unknown as string)
+    if (user.profile_image) {
+      localStorage.setItem(
+        "profile_image",
+        user.profile_image as unknown as string
+      );
     }
     localStorage.setItem("first_name", user.first_name as string);
     localStorage.setItem("last_name", user.last_name as string);
@@ -105,12 +108,6 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     }
   };
 
-  const test = async () => {
-    const response: any = await api.test();
-    const data = response.data;
-    return data;
-  };
-
   const getTasks = async () => {
     const response = await api.getTasks();
     const data = response.data;
@@ -137,7 +134,15 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 
   return (
     <Authcontext.Provider
-      value={{ user, register, logout, login, getTasks, getImage, updateImage }}
+      value={{
+        user,
+        register,
+        logout,
+        login,
+        getTasks,
+        getImage,
+        updateImage,
+      }}
     >
       {children}
     </Authcontext.Provider>
