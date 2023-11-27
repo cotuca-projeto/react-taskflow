@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
-import Logo from "../../svg/logo_black.svg";
 import styles from "./menuAltenative.module.css";
+import Logo from "../Logo/Logo";
 
-export default function () {
+export default function menuAlternative() {
   return (
     <nav className={styles.menu}>
-      <div className={styles.logo}>
-        <p>Taskflow</p>
-        <img src={Logo} alt="Logo-TaskFlow" />
-      </div>
+      <Logo/>
       <div className={styles["buttons-menu"]}>
         <ul>
           <li>

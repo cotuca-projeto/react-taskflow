@@ -1,12 +1,12 @@
-import Logo from "../../svg/logo.svg";
 import Google from "../../svg/google.svg";
 import styles from "./login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { validInput } from "../../utils/Validators";
+import Logo from "../../components/Logo/Logo";
 
-export default function () {
+export default function Login() {
   const auth = useContext(Authcontext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -41,10 +41,9 @@ export default function () {
 
   return (
     <div className={styles.master}>
-      <div className={styles.logo}>
-        <p>TaskFlow</p>
-        <img src={Logo} alt="Logo-TaskFlow" />
-      </div>
+     <div className={styles.logo}>
+      <Logo/>
+     </div>
       <div className={styles.ellipse} id={styles.ellipse2}></div>
       <main className={styles.main}>
         <div className={styles.login}>
@@ -103,7 +102,7 @@ export default function () {
             </p>
           </div>
           <button id={styles.continuegoogle}>
-            <img src={Google} />
+            <img src={Google} alt="Icon Google"/>
             Continue com o Google
           </button>
         </div>
