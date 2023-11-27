@@ -5,7 +5,9 @@ import Logo from "../Logo/Logo";
 export default function menuAlternative() {
   return (
     <nav className={styles.menu}>
-      <Logo/>
+      <div className={styles.logo}>
+        <Logo />
+      </div>
       <div className={styles["buttons-menu"]}>
         <ul>
           <li>
