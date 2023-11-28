@@ -1,0 +1,29 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+    max-height: fit-content;
+    padding: 8px;
+    border: 1px solid #b3b3b3;
+}
+
+.submit > * {
+    margin: 0;
+}
+
+.submit {
+    width: 90%;
+    padding: 8px;
+}
+
+.submit > input {
+    width: 100%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+}

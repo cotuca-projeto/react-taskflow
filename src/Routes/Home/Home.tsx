@@ -5,7 +5,7 @@ import "./Home.module.css";
 import { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 
-export default function () {
+export default function Home() {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
@@ -21,7 +21,7 @@ export default function () {
     <>
       <MenuAlternative />
       <div className={styles.home}>
-        {posts.length < 0 ? <h1>Últimos posts</h1> : null}
+        {posts.length <= 0 ? <h1>Últimos posts</h1> : null}
         {posts.length === 0 ? (
           <p>Carregando...</p>
         ) : (
@@ -29,7 +29,7 @@ export default function () {
             <div className="post" key={post.id}>
               <h2>{post.title}</h2>
               <p>{post.body}</p>
-              <Link className="btn" to={`/posts/${post.id}`}>
+              <Link className="btn" to={`/posts/${post.id}`} id={post.id}>
                 Ler mais
               </Link>
             </div>

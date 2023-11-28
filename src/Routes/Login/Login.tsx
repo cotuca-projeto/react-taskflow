@@ -1,6 +1,6 @@
 import Google from "../../svg/google.svg";
 import styles from "./login.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { validInput } from "../../utils/Validators";
@@ -72,9 +72,9 @@ export default function Login() {
             <div className={styles.password}>
               <div className={styles.row}>
                 <label htmlFor="password">Senha</label>
-                <NavLink to={"/forget"} id={styles.forget}>
+                <Link to={"/forget"} id={styles.forget}>
                   Esqueceu sua senha?
-                </NavLink>
+                </Link>
               </div>
               <input
                 type="password"
@@ -98,7 +98,7 @@ export default function Login() {
               </button>
             </div>
             <p id={styles.haveaccount}>
-              Não tem uma conta? <NavLink to={"/register"}>Registre-se</NavLink>
+              Não tem uma conta? <Link to={"/register"}>Registre-se</Link>
             </p>
           </div>
           <button id={styles.continuegoogle}>

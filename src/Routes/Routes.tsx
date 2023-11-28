@@ -1,11 +1,12 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useParams } from "react-router-dom";
 import Home from "./Home/Home";
 import Register from "./Register/Register";
 import Login from "./Login/Login";
 import Error from "./Error/Error";
 import Cointainer from "./Project/Project";
 import { RequireAuth } from "../Contexts/Auth/RequireAuth";
+import Forget from "./Forget/Forget";
 
 export const Routering = createBrowserRouter([
   {
@@ -27,8 +28,8 @@ export const Routering = createBrowserRouter([
       },
       {
         path: ":id",
-        element: <></>
-      }
+        element: <></>,
+      },
     ],
     errorElement: <Error statuscode={503} title="Serviço indisponível" />,
   },
@@ -38,10 +39,11 @@ export const Routering = createBrowserRouter([
     errorElement: <Error statuscode={503} title="Serviço indisponível" />,
   },
   {
-    path: "login",
+    path: "/login",
     element: <Login />,
     errorElement: <Error statuscode={503} title="Serviço indisponível" />,
   },
+  { path: "/forget", element: <Forget /> },
   {
     path: "/not-auth",
     element: (
