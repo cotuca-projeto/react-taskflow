@@ -7,6 +7,7 @@ import Error from "./Error/Error";
 import Cointainer from "./Project/Project";
 import { RequireAuth } from "../Contexts/Auth/RequireAuth";
 import Forget from "./Forget/Forget";
+import Tasks from "./Project/Tasks/Task";
 
 export const Routering = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ export const Routering = createBrowserRouter([
       },
       {
         path: ":id",
-        element: <></>,
+        element: <Tasks/>,
       },
     ],
     errorElement: <Error statuscode={503} title="Serviço indisponível" />,
