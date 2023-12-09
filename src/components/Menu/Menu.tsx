@@ -1,13 +1,10 @@
-import Logo from "../../svg/logo.svg";
+import Logo from "../Logo/Logo";
 import styles from "./menu.module.css";
 
-export default function () {
+export default function Menu() {
   return (
     <nav className={styles.menu}>
-      <div className={styles.logo}>
-        <p>Taskflow</p>
-        <img src={Logo} alt="Logo-TaskFlow" />
-      </div>
+      <Logo/>
       <div className={styles["buttons-menu"]}>
         <ul>
           <li>

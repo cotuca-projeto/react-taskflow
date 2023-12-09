@@ -37,7 +37,7 @@
 
   border-radius: 23.6875rem;
   background: #2d55fb;
-  filter: blur(500px);
+  filter: blur(245px);
 
   overflow: hidden;
 }
@@ -50,7 +50,7 @@
 #ellipse2 {
   position: fixed;
 
-  left: 65rem;
+  left: 95vw;
   top: -10rem;
 }
 

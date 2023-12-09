@@ -1,12 +1,12 @@
-import Logo from "../../svg/logo.svg";
 import Google from "../../svg/google.svg";
 import styles from "./login.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { validInput } from "../../utils/Validators";
+import Logo from "../../components/Logo/Logo";
 
-export default function () {
+export default function Login() {
   const auth = useContext(Authcontext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -41,10 +41,9 @@ export default function () {
 
   return (
     <div className={styles.master}>
-      <div className={styles.logo}>
-        <p>TaskFlow</p>
-        <img src={Logo} alt="Logo-TaskFlow" />
-      </div>
+     <div className={styles.logo}>
+      <Logo/>
+     </div>
       <div className={styles.ellipse} id={styles.ellipse2}></div>
       <main className={styles.main}>
         <div className={styles.login}>
@@ -73,9 +72,9 @@ export default function () {
             <div className={styles.password}>
               <div className={styles.row}>
                 <label htmlFor="password">Senha</label>
-                <NavLink to={"/forget"} id={styles.forget}>
+                <Link to={"/forget"} id={styles.forget}>
                   Esqueceu sua senha?
-                </NavLink>
+                </Link>
               </div>
               <input
                 type="password"
@@ -99,11 +98,11 @@ export default function () {
               </button>
             </div>
             <p id={styles.haveaccount}>
-              Não tem uma conta? <NavLink to={"/register"}>Registre-se</NavLink>
+              Não tem uma conta? <Link to={"/register"}>Registre-se</Link>
             </p>
           </div>
           <button id={styles.continuegoogle}>
-            <img src={Google} />
+            <img src={Google} alt="Icon Google"/>
             Continue com o Google
           </button>
         </div>

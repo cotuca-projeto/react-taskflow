@@ -1,12 +1,12 @@
 import styles from "./register.module.css";
-import Logo from "../../svg/logo.svg";
 import Google from "../../svg/google.svg";
 import { useState, useContext, useEffect } from "react";
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { validComplet } from "../../utils/Validators";
+import Logo from "../../components/Logo/Logo";
 
-export default function () {
+export default function Register() {
   const auth = useContext(Authcontext);
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
@@ -33,7 +33,6 @@ export default function () {
         setDisabled(true);
         navigate("/project");
       } else {
-        return alert("Erro, tente novamente!");
         setDisabled(false);
       }
     }
@@ -48,10 +47,7 @@ export default function () {
   return (
     <main className={styles.main}>
       <div className={styles.bg}>
-        <div className={styles.logo}>
-          <p>TaskFlow</p>
-          <img src={Logo} alt="Logo-TaskFlow" />
-        </div>
+        <Logo/>
         <div className={styles.title}>
           <h3>
             Bem-vindo.
@@ -170,7 +166,7 @@ export default function () {
           </p>
         </div>
         <button id={styles.continuegoogle}>
-          <img src={Google} />
+          <img src={Google} alt="Icon Google" />
           Continue com o Google
         </button>
       </div>
