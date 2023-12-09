@@ -1,13 +1,18 @@
+import { useEffect } from "react";
 import styles from "./Task.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import useApi from "../../../hooks/useApi";
 
 export default function Tasks() {
   const location = useLocation();
   const history = useNavigate();
+  const api = useApi();
 
   function goBack() {
     history(-1);
   }
+
+  useEffect(() => {}, []);
 
   return (
     <div>
