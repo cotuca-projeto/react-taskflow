@@ -13,9 +13,10 @@ export type AuthContextType = {
   ) => Promise<boolean>;
   login: (email: string, password: string) => Promise<boolean>;
   getTasks: () => Promise<
-    AxiosResponse<{ status: number; Message: string; tasks: Task[] | null}>
+    AxiosResponse<{ message: string; tasks: Task[] | null }>
   >;
   getImage: () => Promise<Buffer>;
+  getTask: (id: number) => Promise<AxiosResponse<{ task: Task[] | null }>>;
   updateImage: (image: File) => Promise<boolean>;
   logout: () => void;
 };

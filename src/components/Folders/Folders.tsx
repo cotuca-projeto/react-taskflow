@@ -3,6 +3,7 @@ import Project_unique from "../Project_unique/project_unique";
 import styles from "./folders.module.css";
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Task } from "../../types/User";
 
 interface foldersProps {
   hide: boolean;
@@ -18,19 +19,20 @@ export default function ({ hide }: foldersProps) {
   }, []);
 
   const fetchData = async () => {
-    const response = await auth.getTasks().catch((err) => {
-      console.error(err);
-    });
+    try {
+      const response = await auth.getTasks();
 
-    console.log(response);
-
-    if (response) {
-      console.log(response?.data?.tasks);
-      if (response?.data?.tasks) {
-        setTasks(response?.data?.tasks);
+      if (
+        response.data &&
+        response.data.tasks &&
+        response.data.tasks.length > 0
+      ) {
+        setTasks(response.data.tasks);
       } else {
         setTasks([]);
       }
+    } catch (error) {
+      console.error("Erro ao buscar tarefas:", error);
     }
   };
 

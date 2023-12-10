@@ -3,7 +3,7 @@ import styles from "./Task.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Authcontext } from "../../../Contexts/Auth/AuthContext";
 
-export default function Tasks() {
+export default function NewTask() {
   const location = useLocation();
   const history = useNavigate();
   const auth = useContext(Authcontext);

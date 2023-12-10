@@ -4,7 +4,6 @@ import "./global.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
 import { Routering } from "./Routes/Routes";
-import { Authcontext } from "./Contexts/Auth/AuthContext";
 import { AuthProvider } from "./Contexts/Auth/AuthProvider";
 
 const root = ReactDOM.createRoot(

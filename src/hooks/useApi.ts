@@ -4,24 +4,7 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_API || "http://localhost:3001",
 });
 
-export const useApi = () => ({
-  validateToken: async (token: string) => {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    const response = await api.get("/api/validate", config);
-    return response;
-  },
-
-  test: async () => {
-    try {
-      const response = await api.get("/api");
-      return response;
-    } catch (error) {
-      return error;
-    }
-  },
-
+export const useTaskAPI = {
   // Base das Tasks do Usuário
   createTask: async (
     title: string,
@@ -45,9 +28,19 @@ export const useApi = () => ({
     return response;
   },
 
+  getTask: async (id: number, token: string) => {
+    const options = {
+      params: { id },
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const response = await api.post("/api/tasks/gettask", options);
+    return response;
+  },
+
   getTasks: async () => {
     const config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` },
+      headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
     };
     const response = await api.get("/api/tasks/gettasks", config);
 
@@ -68,8 +61,18 @@ export const useApi = () => ({
     });
     return response;
   },
+};
 
+export const useUserAPI = {
   // Base de Usuários
+  validateToken: async (token: string) => {
+    const config = {
+      headers: { authorization: `Bearer ${token}` },
+    };
+    const response = await api.get("/api/validate", config);
+
+    return response;
+  },
   register: async (
     username: string,
     password: string,
@@ -77,14 +80,14 @@ export const useApi = () => ({
     last_name: string,
     email: string
   ) => {
-    const params = new URLSearchParams({
+    const options = {
       username: username,
       email: email,
       password: password,
       first_name: first_name,
       last_name: last_name,
-    });
-    const response = await api.post("/api/users/register", params);
+    };
+    const response = await api.post("/api/users/register", options);
     return response;
   },
 
@@ -111,7 +114,6 @@ export const useApi = () => ({
     });
 
     const response = await api.post("/api/users/login", params);
-    console.log(response);
 
     return response;
   },
@@ -126,6 +128,6 @@ export const useApi = () => ({
     );
     return response;
   },
-});
+};
 
-export default useApi;
+export default useTaskAPI;

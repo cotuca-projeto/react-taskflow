@@ -5,6 +5,7 @@ import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { validComplet } from "../../utils/Validators";
 import Logo from "../../components/Logo/Logo";
+import { AxiosError } from "axios";
 
 export default function Register() {
   const auth = useContext(Authcontext);
@@ -14,6 +15,7 @@ export default function Register() {
   const [userName, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [ErrorMessage, setErrorMessage] = useState("");
 
   const [disabled, setDisabled] = useState(false);
 
@@ -21,17 +23,16 @@ export default function Register() {
     if (firstName && lastName && userName && email && password) {
       const isLogged = await auth
         .register(userName, password, firstName, lastName, email)
-        .catch((err) => {
-          if (err.response.status === 401) {
-            return alert("Email ou nome de usuário já existente!");
-          } else if (err.response.status === 404) {
-            return alert("Não foi encontrado o usuario!");
-          }
+        .catch((err: AxiosError<{ status: number ,Message: string }>) => {
+          return setErrorMessage(
+            err.response?.data.Message || "An error occurred"
+          );
         });
 
       if (isLogged) {
         setDisabled(true);
         navigate("/project");
+        window.location.reload();
       } else {
         setDisabled(false);
       }
@@ -47,7 +48,7 @@ export default function Register() {
   return (
     <main className={styles.main}>
       <div className={styles.bg}>
-        <Logo/>
+        <Logo />
         <div className={styles.title}>
           <h3>
             Bem-vindo.
@@ -164,6 +165,7 @@ export default function Register() {
           <p id={styles.haveaccount}>
             Já tem uma conta? <a href="/login">Log in</a>
           </p>
+          {ErrorMessage && <p className={styles.error}>{ErrorMessage}</p>}
         </div>
         <button id={styles.continuegoogle}>
           <img src={Google} alt="Icon Google" />

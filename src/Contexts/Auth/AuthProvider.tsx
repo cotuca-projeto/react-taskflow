@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 import { User } from "../../types/User";
 import { Authcontext } from "./AuthContext";
-import useApi from "../../hooks/useApi";
 import { AxiosResponse } from "axios";
+import useTaskAPI, { useUserAPI } from "../../hooks/useApi";
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const api = useApi();
 
   useEffect(() => {
     const validateToken = async () => {
-      const storageData = localStorage.getItem("authToken");
+      const storageData = localStorage.getItem("token");
       if (storageData) {
         try {
-          const response = await api.validateToken(storageData);
+          const response = await useUserAPI.validateToken(storageData);
           const data = response.data;
-          if (data?.user) {
+          if (!!data?.user) {
             setUser(data.user);
+            setUserStorage(data.user);
           } else {
             setUser(null);
           }
@@ -41,19 +41,19 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   }
 
   const logout = async () => {
-    await api.logout();
+    await useUserAPI.logout();
     setUser(null);
     localStorage.clear();
   };
 
   const setToken = (token: string) => {
-    localStorage.setItem("authToken", token);
+    localStorage.setItem("token", token);
   };
 
   const setUserStorage = (user: User) => {
     localStorage.setItem("username", user.username);
     localStorage.setItem("email", user.email);
-    localStorage.setItem("id", user.id.toString());
+    // localStorage.setItem("id", user.id.toString());
     if (user.profile_image) {
       localStorage.setItem(
         "profile_image",
@@ -65,15 +65,14 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   const login = async (email: string, password: string) => {
-    const response = await api.login(email, password);
+    const response = await useUserAPI.login(email, password);
     if (!response) {
       return false;
     }
     const data = response.data;
-    if (data?.user && data?.token) {
-      setUser(data.user);
+    if (data?.token) {
       setToken(data.token);
-      setUserStorage(data.user);
+      setUserStorage((await useUserAPI.validateToken(data.token)).data.user);
       return true;
     } else {
       return false;
@@ -87,7 +86,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     last_name: string,
     email: string
   ) => {
-    const response = await api.register(
+    const response = await useUserAPI.register(
       username,
       password,
       first_name,
@@ -98,7 +97,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       return false;
     }
     const data = (response as AxiosResponse<any>).data;
-    if (data?.user && data?.token) {
+    if (data?.user || data?.token) {
       setUser(data.user);
       setToken(data.token);
       setUserStorage(data.user);
@@ -109,13 +108,13 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   const getTasks = async () => {
-    const response = await api.getTasks();
+    const response = await useTaskAPI.getTasks();
     const data = response.data;
     return data;
   };
 
   const getImage = async () => {
-    const response = await api.getImage();
+    const response = await useUserAPI.getImage();
     const data = response.data;
     if (data) {
       localStorage.setItem("profile_image", data);
@@ -124,7 +123,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   const updateImage = async (image: File) => {
-    const response = await api.updateImage(image);
+    const response = await useUserAPI.updateImage(image);
     const data = response.data;
     if (data) {
       localStorage.setItem("profile_image", data);
@@ -132,10 +131,18 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return data;
   };
 
+  const getTask = async (id: number) => {
+    const token = localStorage.getItem("token") ?? "";
+    const response = await useTaskAPI.getTask(id, token);
+    const data = response.data;
+    return data;
+  };
+
   return (
     <Authcontext.Provider
       value={{
         user,
+        getTask,
         register,
         logout,
         login,

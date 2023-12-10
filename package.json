@@ -7,7 +7,6 @@
   },
   "private": true,
   "dependencies": {
-    "@prisma/client": "^5.5.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,7 +18,7 @@
     "axios": "^1.6.1",
     "draft-js": "^0.11.7",
     "draftjs-to-markdown": "^0.6.0",
-    "prisma": "^5.5.2",
+    "jsonwebtoken": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
@@ -55,6 +54,7 @@
   },
   "devDependencies": {
     "@types/draft-js": "^0.11.16",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/react-draft-wysiwyg": "^1.13.7"
   }
 }

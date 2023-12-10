@@ -23,10 +23,12 @@ export default function Login() {
         }
       });
       if (isLogged) {
-        setDisabled(true);
-      } else {
         setDisabled(false);
         navigate("/project");
+        // recarregar a pagina
+        window.location.reload();
+      } else {
+        setDisabled(true);
       }
     }
   };
@@ -41,9 +43,9 @@ export default function Login() {
 
   return (
     <div className={styles.master}>
-     <div className={styles.logo}>
-      <Logo/>
-     </div>
+      <div className={styles.logo}>
+        <Logo />
+      </div>
       <div className={styles.ellipse} id={styles.ellipse2}></div>
       <main className={styles.main}>
         <div className={styles.login}>
@@ -102,7 +104,7 @@ export default function Login() {
             </p>
           </div>
           <button id={styles.continuegoogle}>
-            <img src={Google} alt="Icon Google"/>
+            <img src={Google} alt="Icon Google" />
             Continue com o Google
           </button>
         </div>
