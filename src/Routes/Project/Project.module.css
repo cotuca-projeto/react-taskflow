@@ -5,4 +5,7 @@
 
 .outlet {
     display: flex;
+    width: 70%;
+    flex-direction: column;
+    justify-content: flex-start;
 }

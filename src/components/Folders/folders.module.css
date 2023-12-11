@@ -23,6 +23,14 @@
 
 .projects {
     width: 100%;
+    margin: 0 15px;
+}
+
+.projects > button {
+    padding: 0.5rem 0.5rem;
+    border-radius: 4px;
+    background: rgb(64, 64, 64);
+    color: white;
 }
 
 .none {

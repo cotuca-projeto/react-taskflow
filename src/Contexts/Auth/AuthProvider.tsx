@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { User } from "../../types/User";
-import { Authcontext } from "./AuthContext";
+import { Task, User } from "../../types/User";
+import { AuthContextType, Authcontext } from "./AuthContext";
 import { AxiosResponse } from "axios";
-import useTaskAPI, { useUserAPI } from "../../hooks/useApi";
+import { useTaskAPI, useUserAPI } from "../../hooks/useApi";
+import { OutputData } from "@editorjs/editorjs";
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -54,11 +55,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     localStorage.setItem("username", user.username);
     localStorage.setItem("email", user.email);
     // localStorage.setItem("id", user.id.toString());
-    if (user.profile_image) {
-      localStorage.setItem(
-        "profile_image",
-        user.profile_image as unknown as string
-      );
+    if (user.photo) {
+      localStorage.setItem("profile_image", user.photo as unknown as string);
     }
     localStorage.setItem("first_name", user.first_name as string);
     localStorage.setItem("last_name", user.last_name as string);
@@ -126,9 +124,10 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const response = await useUserAPI.updateImage(image);
     const data = response.data;
     if (data) {
-      localStorage.setItem("profile_image", data);
+      const profileImage = data.user.photo as unknown as string;
+      localStorage.setItem("profile_image", profileImage);
     }
-    return data;
+    return !!data;
   };
 
   const getTask = async (id: number) => {
@@ -138,9 +137,31 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return data;
   };
 
+  const updateTask = async (id: number, json: OutputData) => {
+    const token = localStorage.getItem("token") ?? "";
+    const response = await useTaskAPI.updateTask(id, json, token);
+    const data = response.data;
+    return data;
+  };
+
+  const createTask = async (json: OutputData) => {
+    const token = localStorage.getItem("token") ?? "";
+    const response = await useTaskAPI.createTask(json, token);
+    const userWithTask = {
+      ...response.data.user,
+      task: response.data.task, // Adicione a tarefa ao usuário
+    };
+    setUserStorage(userWithTask);
+    setUser(userWithTask);
+    setToken(response.data.token);
+    return response;
+  };
+
   return (
     <Authcontext.Provider
       value={{
+        createTask,
+        updateTask,
         user,
         getTask,
         register,

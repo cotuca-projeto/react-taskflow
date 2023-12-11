@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { User } from "../types/User";
+import { OutputData } from "@editorjs/editorjs";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API || "http://localhost:3001",
@@ -6,17 +8,11 @@ const api = axios.create({
 
 export const useTaskAPI = {
   // Base das Tasks do Usuário
-  createTask: async (
-    title: string,
-    description: string,
-    token: string,
-    user: number
-  ) => {
-    const response = await api.post("/api/tasks/create", {
-      title,
-      description,
+  createTask: async (json: OutputData, token: string) => {
+    const Newstring = JSON.stringify(json);
+    const response = await api.post<{message: string, token: string, user: any, task: any}>("/api/tasks/create", {
+      json: Newstring,
       token,
-      user,
     });
     return response;
   },
@@ -34,7 +30,7 @@ export const useTaskAPI = {
       headers: { Authorization: `Bearer ${token}` },
     };
 
-    const response = await api.post("/api/tasks/gettask", options);
+    const response = await api.get("/api/tasks/gettask", options);
     return response;
   },
 
@@ -47,16 +43,11 @@ export const useTaskAPI = {
     return response;
   },
 
-  updateTask: async (
-    id: number,
-    title: string,
-    description: string,
-    token: string
-  ) => {
+  updateTask: async (id: number, json: OutputData, token: string) => {
+    const Newstring = JSON.stringify(json);
     const response = await api.put("/api/tasks/updatetask", {
       id,
-      title,
-      description,
+      json: Newstring,
       token,
     });
     return response;
@@ -69,7 +60,10 @@ export const useUserAPI = {
     const config = {
       headers: { authorization: `Bearer ${token}` },
     };
-    const response = await api.get("/api/validate", config);
+    const response = await api.get<{ message?: string; user: User }>(
+      "/api/validate",
+      config
+    );
 
     return response;
   },
@@ -87,7 +81,10 @@ export const useUserAPI = {
       first_name: first_name,
       last_name: last_name,
     };
-    const response = await api.post("/api/users/register", options);
+    const response = await api.post<{ token: string; message?: string }>(
+      "/api/users/register",
+      options
+    );
     return response;
   },
 
@@ -102,7 +99,10 @@ export const useUserAPI = {
 
   getImage: async () => {
     const response = await api.get("/api/users/getimage", {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        getContentType: "image/jpeg",
+      },
     });
     return response;
   },
@@ -113,13 +113,16 @@ export const useUserAPI = {
       password: password,
     });
 
-    const response = await api.post("/api/users/login", params);
+    const response = await api.post<{ token: string; message?: string }>(
+      "/api/users/login",
+      params
+    );
 
     return response;
   },
 
   updateImage: async (image: File) => {
-    const response = await api.put(
+    const response = await api.put<{ message?: string; user: User }>(
       "/api/users/updateimage",
       { image },
       {
@@ -129,5 +132,3 @@ export const useUserAPI = {
     return response;
   },
 };
-
-export default useTaskAPI;

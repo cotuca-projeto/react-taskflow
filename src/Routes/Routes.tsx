@@ -8,6 +8,7 @@ import Cointainer from "./Project/Project";
 import { RequireAuth } from "../Contexts/Auth/RequireAuth";
 import Forget from "./Forget/Forget";
 import Tasks from "./Project/Tasks/Task";
+import NewTask from "./Project/Tasks/NewTask";
 
 export const Routering = createBrowserRouter([
   {
@@ -25,7 +26,7 @@ export const Routering = createBrowserRouter([
     children: [
       {
         path: "newtask",
-        element: <h1>Poggers</h1>,
+        element: <NewTask/>
       },
       {
         path: ":id",

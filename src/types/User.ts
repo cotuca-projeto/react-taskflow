@@ -1,19 +1,23 @@
 export type User = {
   id: number;
-  username: string;
-  first_name?: string;
-  last_name?: string;
   email: string;
-  password?: string;
-  profile_image?: Buffer | null;
+  password: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+  photo?: string | null;
   token?: string;
+  tasks: Task[] | null;
 };
 
 export type Task = {
   id: number;
-  user_id: string;
+  task_id: number;
+  user: number;
   title: string;
-  description?: string;
-  completed?: string;
-  category_id: number;
+  description: string | null;
+  due_date: Date | null;
+  completed: string;
+  priority: number;
+  category_id: number | null;
 };

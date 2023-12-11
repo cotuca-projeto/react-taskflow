@@ -14,6 +14,8 @@ export default function Tasks() {
   }
 
   useEffect(() => {
+    console.log(location.pathname);
+    
     auth.getTask(location.pathname as unknown as number).then((res) => {
       if (res.data.task === null) {
         

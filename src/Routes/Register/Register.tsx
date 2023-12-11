@@ -23,11 +23,14 @@ export default function Register() {
     if (firstName && lastName && userName && email && password) {
       const isLogged = await auth
         .register(userName, password, firstName, lastName, email)
-        .catch((err: AxiosError<{ status: number ,Message: string }>) => {
+        .catch((err: AxiosError<{ status: number; Message: string }>) => {
           return setErrorMessage(
             err.response?.data.Message || "An error occurred"
           );
         });
+      
+      console.log(isLogged);
+      
 
       if (isLogged) {
         setDisabled(true);

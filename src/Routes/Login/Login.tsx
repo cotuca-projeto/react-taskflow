@@ -5,30 +5,38 @@ import { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { validInput } from "../../utils/Validators";
 import Logo from "../../components/Logo/Logo";
+import { AxiosError } from "axios";
 
 export default function Login() {
   const auth = useContext(Authcontext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [disabled, setDisabled] = useState(false);
+  const [ErrorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async () => {
     if (email && password) {
-      const isLogged = await auth.login(email, password).catch((err) => {
-        if (err?.response?.status === 401) {
-          console.log(err.response);
-          return alert("Ocorreu um erro ao fazer login!");
-        }
-      });
+      const isLogged = await auth
+        .login(email, password)
+        .then(() => true)
+        .catch((err: AxiosError<{ message: string }>) => {
+          if (err?.response?.status === 401) {
+            console.log(err.response);
+            const errorMessage =
+              err.response?.data?.message || "An error occurred";
+            setErrorMessage(errorMessage);
+          }
+          return false;
+        });
+
       if (isLogged) {
-        setDisabled(false);
+        setDisabled(true);
         navigate("/project");
         // recarregar a pagina
         window.location.reload();
       } else {
-        setDisabled(true);
+        setDisabled(false);
       }
     }
   };
@@ -36,7 +44,7 @@ export default function Login() {
   validInput(email, password);
 
   useEffect(() => {
-    if (auth.user) {
+    if (auth.user || localStorage.getItem("token")) {
       navigate("/project");
     }
   });
@@ -99,6 +107,7 @@ export default function Login() {
                 Entrar
               </button>
             </div>
+            {ErrorMessage && <p id={styles.error}>{ErrorMessage}</p>}
             <p id={styles.haveaccount}>
               Não tem uma conta? <Link to={"/register"}>Registre-se</Link>
             </p>

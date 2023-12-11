@@ -4,6 +4,7 @@ import styles from "./folders.module.css";
 import { Authcontext } from "../../Contexts/Auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Task } from "../../types/User";
+import NewButton from "../button/NewButton";
 
 interface foldersProps {
   hide: boolean;
@@ -45,7 +46,6 @@ export default function ({ hide }: foldersProps) {
       <div className={styles.private}>
         <p id={styles.title}>Privado</p>
         <div className={styles.projects}>
-          <button onClick={handleClick}>Nova Tarefa</button>
           {tasks.length > 0 ? (
             tasks.map((task: any) => (
               <Project_unique key={task.id} title={task.title} hide={hide} />
@@ -53,6 +53,7 @@ export default function ({ hide }: foldersProps) {
           ) : (
             <p>Não há tarefas</p>
           )}
+          <NewButton text={"Nova Tarefa"} handleClick={handleClick} />
         </div>
       </div>
     </div>
